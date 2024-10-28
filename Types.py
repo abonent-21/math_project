@@ -1,15 +1,28 @@
-class nat_t(int):
-    def __init__(self, number: int):
-        assert number > 0, "The number in the array or the number itself does not belong to natural numbers"
+# nat_0 = 0, 1, 2, 3, inf+
+# ceil = -inf, -1, 0, 1, 2, inf+
+# digit = 0 - 9
 
-class nat_0_t(int):
-    def __init__(self, number: int):
-        assert number >= 0, "The number in the array or the number itself does not belong to natural_zero numbers"
+class nat_0:
+    def __init__(self, array: list, n: int):
+        assert n == len(array)
+        assert all(0 <= i <= 9 for i in array)
 
-class dig_t(int):
-    def __init__(self, number: int):
-        assert isinstance(number, int), "The number in the array or the number itself does not belong to ceil numbers"
+        self.array = array
+        self.n = n
 
-class bin_t(int):
+class dig:
     def __init__(self, number: int):
-        assert number in [0, 1], "The number in the array or the number itself does not belong to binary numbers"
+        assert 0 <= number <= 9
+
+        self.array = number
+
+class ceil:
+    def __init__(self, array: list, n: int, sign: int):
+        assert n == len(array)
+        assert all(0 <= i <= 9 for i in array)
+        assert sign in [0, 1]
+    
+        self.array = array
+        self.n = n
+        self.sign = sign
+        
