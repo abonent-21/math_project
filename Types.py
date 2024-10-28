@@ -1,4 +1,4 @@
-class nat_0:
+class nat_0(object):
     def __init__(self, array: list, n: int):
         assert n == len(array), "Длина списка должна быть равна n"
         assert all(0 <= i <= 9 for i in array), "Все элементы должны быть цифрами от 0 до 9"
@@ -12,9 +12,12 @@ class nat_0:
 
     def __repr__(self):
         return f"nat_0({self.array}, {self.n})"
+    
+    def __copy__(self):
+        return nat_0(self.array, self.n)
 
 
-class dig:
+class dig(object):
     def __init__(self, number: int):
         assert 0 <= number <= 9, "Число должно быть цифрой от 0 до 9"
         self.value = number  # Исправлено на `self.value`
@@ -26,9 +29,12 @@ class dig:
 
     def __repr__(self):
         return f"dig({self.value})"  # Исправлено на `self.value`
+    
+    def __copy__(self):
+        return dig(self.value)
 
 
-class ceil:
+class ceil(object):
     def __init__(self, array: list, n: int, sign: int):
         assert n == len(array), "Длина списка должна быть равна n"
         assert all(0 <= i <= 9 for i in array), "Все элементы должны быть цифрами от 0 до 9"
@@ -44,3 +50,6 @@ class ceil:
 
     def __repr__(self):
         return f"ceil({self.array}, {self.n}, {self.sign})"
+    
+    def __copy__(self):
+        return ceil(self.array, self.n, self.sign)
