@@ -1,7 +1,7 @@
 class nat_t(int):
     def __init__(self, number: int):
         if number <= 0:
-            raise TypeError("Error data for natural digit")]
+            raise TypeError("Error data for natural digit")
 
 class dig_t(int):
     def __init__(self, number: int):
