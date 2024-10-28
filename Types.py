@@ -13,7 +13,7 @@ class nat_0(object):
     def __repr__(self):
         return f"nat_0({self.array}, {self.n})"
     
-    def __copy__(self):
+    def copy(self):
         return nat_0(self.array, self.n)
 
 
@@ -30,7 +30,7 @@ class dig(object):
     def __repr__(self):
         return f"dig({self.value})"  # Исправлено на `self.value`
     
-    def __copy__(self):
+    def copy(self):
         return dig(self.value)
 
 
@@ -51,5 +51,5 @@ class ceil(object):
     def __repr__(self):
         return f"ceil({self.array}, {self.n}, {self.sign})"
     
-    def __copy__(self):
+    def copy(self):
         return ceil(self.array, self.n, self.sign)
