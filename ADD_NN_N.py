@@ -1,74 +1,33 @@
-<<<<<<< HEAD
 # ADD_NN_N.py
-# Модуль ADD_NN_N
 # Сложение натуральных чисел
-
 # Автор: Самигулин Д.А. Группа - ПМИ-3381
 
-from Types import nat_0  # Импортируем nat_0
+from Types import nat_0
 
 def ADD_NN_N(A: nat_0, B: nat_0) -> nat_0:
     """
     Суммирует два натуральных числа A и B, представленные в виде объектов nat_0.
-
-    :param A: первое натуральное число (объект nat_0)
-    :param B: второе натуральное число (объект nat_0)
-    :return: сумма A + B (объект nat_0)
     """
-    # Определяем максимальную длину числа для сложения
-    max_len = max(A.n, B.n)
-
     # Выравниваем длины чисел, добавляя ведущие нули к более короткому числу
-    a_digits = [0] * (max_len - A.n) + A.array
-    b_digits = [0] * (max_len - B.n) + B.array
+    max_len = max(A.n, B.n)
+    A_digits = [0]*(max_len - A.n) + A.array.copy()
+    B_digits = [0]*(max_len - B.n) + B.array.copy()
 
-    result = [0] * max_len  # Список для результата
+    result = [0] * (max_len + 1)  # +1 для возможного переноса
     carry = 0  # Переменная для переноса
 
-    # Сложение от младших цифр к старшим
+    # Сложение с конца
     for i in range(max_len - 1, -1, -1):
-        total = a_digits[i] + b_digits[i] + carry  # Суммируем соответствующие цифры и перенос
-        result[i] = total % 10  # Записываем текущую цифру результата
-        carry = total // 10  # Обновляем перенос
+        total = A_digits[i] + B_digits[i] + carry
+        result[i+1] = total % 10
+        carry = total // 10
 
-    # Если остался перенос, добавляем его в начало результата
+    # Обработка возможного переноса в самый старший разряд
     if carry:
-        result = [carry] + result
+        result[0] = carry
         result_len = max_len + 1
     else:
+        result = result[1:]  # Удаляем незначащий ноль
         result_len = max_len
 
-    # Возвращаем результат в виде объекта nat_0
     return nat_0(result, result_len)
-=======
-# ADD_NN_N.py
-# Модуль ADD_NN_N
-# Сложение натуральных чисел
-
-# Автор: Самигулин Д.А. Группа - ПМИ-3381
-
-def ADD_NN_N(A, B):
-    """
-    Суммирует два натуральных числа A и B.
-
-    :param A: первое натуральное число (список цифр)
-    :param B: второе натуральное число (список цифр)
-    :return: сумма A + B (список цифр)
-    """
-    # Выравниваем длины чисел, дополняя короткое число нулями слева
-    max_len = max(len(A), len(B))
-    A = [0]*(max_len - len(A)) + A  # Дополняем A нулями
-    B = [0]*(max_len - len(B)) + B  # Дополняем B нулями
-
-    result = [0]*max_len  # Результирующий список цифр
-    carry = 0  # Переменная для переноса
-    # Проходим по цифрам с конца к началу
-    for i in range(max_len-1, -1, -1):
-        total = A[i] + B[i] + carry  # Суммируем цифры и перенос
-        result[i] = total % 10  # Записываем цифру в результат
-        carry = total // 10  # Обновляем перенос
-    if carry:
-        # Если после прохода остался перенос, добавляем его в начало списка
-        result = [carry] + result
-    return result  # Возвращаем сумму
->>>>>>> f2084a7bb46ccf33f4f3e3ee438e972ad1923261

@@ -1,74 +1,36 @@
-<<<<<<< HEAD
 # COM_NN_D.py
-# Модуль COM_NN_D
-# Сравнение натуральных чисел: 2 - если первое больше второго, 0, если равно, 1 иначе.
-
+# Сравнение натуральных чисел: A ? B
 # Автор: Самигулин Д.А. Группа - ПМИ-3381
 
-from Types import nat_0  # Импортируем структуру nat_0
+from Types import nat_0
 
 def COM_NN_D(A: nat_0, B: nat_0) -> int:
     """
-    Функция для сравнения двух натуральных чисел A и B в структуре nat_0.
+    Сравнивает два натуральных числа A и B в структуре nat_0.
     Возвращает:
     - 2, если A > B
     - 0, если A == B
     - 1, если A < B
-
-    :param A: первое натуральное число (объект nat_0)
-    :param B: второе натуральное число (объект nat_0)
-    :return: 2, 0 или 1
     """
-    # Сравниваем длины чисел
-    if A.n > B.n:
-        return 2  # Если A длиннее, то оно больше
-    elif A.n < B.n:
-        return 1  # Если B длиннее, то A меньше
+    # Удаляем ведущие нули для сравнения
+    A_digits = A.array.copy()
+    B_digits = B.array.copy()
 
-    # Если длины равны, сравниваем цифры поразрядно
-    for i in range(A.n):
-        if A.array[i] > B.array[i]:
-            return 2  # Цифра в A больше, значит A > B
-        elif A.array[i] < B.array[i]:
-            return 1  # Цифра в B больше, значит A < B
-    return 0  # Все цифры равны, значит A == B
-=======
-# COM_NN_D.py
-# Модуль COM_NN_D
-# Сравнение натуральных чисел: 2 - если первое больше второго, 0, если равно, 1 иначе.
+    while len(A_digits) > 1 and A_digits[0] == 0:
+        A_digits.pop(0)
+    while len(B_digits) > 1 and B_digits[0] == 0:
+        B_digits.pop(0)
 
-# Автор: Самигулин Д.А. Группа - ПМИ-3381
+    # Сравниваем длины
+    if len(A_digits) > len(B_digits):
+        return 2
+    elif len(A_digits) < len(B_digits):
+        return 1
 
-def COM_NN_D(A, B):
-    """
-    Функция для сравнения двух натуральных чисел A и B.
-    Возвращает:
-    - 2, если A > B
-    - 0, если A == B
-    - 1, если A < B
-
-    :param A: первое натуральное число (список цифр)
-    :param B: второе натуральное число (список цифр)
-    :return: 2, 0 или 1
-    """
-    # Удаляем ведущие нули из числа A
-    while len(A) > 1 and A[0] == 0:
-        A = A[1:]  # Срезаем первый элемент списка
-    # Удаляем ведущие нули из числа B
-    while len(B) > 1 and B[0] == 0:
-        B = B[1:]
-
-    # Сравниваем длины чисел
-    if len(A) > len(B):
-        return 2  # Если A длиннее, то оно больше
-    elif len(A) < len(B):
-        return 1  # Если B длиннее, то A меньше B
-    else:
-        # Если длины равны, сравниваем цифры поразрядно
-        for i in range(len(A)):
-            if A[i] > B[i]:
-                return 2  # Цифра в A больше, значит A > B
-            elif A[i] < B[i]:
-                return 1  # Цифра в B больше, значит A < B
-        return 0  # Все цифры равны, значит A == B
->>>>>>> f2084a7bb46ccf33f4f3e3ee438e972ad1923261
+    # Сравниваем цифры
+    for a_digit, b_digit in zip(A_digits, B_digits):
+        if a_digit > b_digit:
+            return 2
+        elif a_digit < b_digit:
+            return 1
+    return 0
