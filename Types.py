@@ -1,6 +1,10 @@
 class nat_t(int):
     def __init__(self, number: int):
-        assert number >= 0, "The number in the array or the number itself does not belong to natural numbers"
+        assert number > 0, "The number in the array or the number itself does not belong to natural numbers"
+
+class nat_0_t(int):
+    def __init__(self, number: int):
+        assert number >= 0, "The number in the array or the number itself does not belong to natural_zero numbers"
 
 class dig_t(int):
     def __init__(self, number: int):
