@@ -1,3 +1,4 @@
+# Автор: Козлов Георгий. Группа - ПМИ-3381
 from Types import ceil, dig
 
 
