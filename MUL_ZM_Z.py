@@ -1,3 +1,4 @@
+# Автор: Козлов Георгий. Группа - ПМИ-3381
 from Types import ceil  # Импортируем класс ceil из модуля Types
 
 def MUL_ZM_Z(number: ceil) -> ceil:
