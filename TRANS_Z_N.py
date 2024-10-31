@@ -1,11 +1,17 @@
 # Автор: Козлов Георгий. Группа - ПМИ-3381
-from Types import ceil, nat_0
+
+from Types import ceil, nat_0  # Импортируем типы ceil (целое число) и nat_0 (натуральное число) из модуля Types
 
 def TRANS_Z_N(number: ceil) -> nat_0:
     """
     Преобразование целого неотрицательного в натуральное
     """
+    # Проверяем, является ли число отрицательным
     if number.sign == 1:
-        raise AssertionError
+        raise AssertionError("Число отрицательное в  TRANS_Z_N") # Если знак равен 1 (отрицательное), выбрасываем исключение
+
+    # Создаем новый объект num_nat типа nat_0
+    # Копируем массив из number и передаем его длину
     num_nat = nat_0(array=number.array.copy(), n=number.n)
-    return num_nat
+    
+    return num_nat  # Возвращаем полученное натуральное число
