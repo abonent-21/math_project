@@ -6,5 +6,5 @@ def TRANS_Z_N(number: ceil) -> nat_0:
     """
     if number.sign == 1:
         raise AssertionError
-    num_nat = nat_0(array=number.array, n=number.n)
+    num_nat = nat_0(array=number.array.copy(), n=number.n)
     return num_nat
