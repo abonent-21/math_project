@@ -1,3 +1,5 @@
+# Автор: Козлов Георгий. Группа - ПМИ-3381
+
 import pytest
 from Types import ceil, nat_0, dig
 from ABS_Z_Z import ABS_Z_Z
