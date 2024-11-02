@@ -14,7 +14,7 @@ class nat_0(object):
         return f"nat_0({self.array}, {self.n})"
     
     def copy(self):
-        return nat_0(self.array, self.n)
+        return nat_0(self.array.copy(), self.n)
 
 
 class dig(object):
@@ -52,4 +52,4 @@ class ceil(object):
         return f"ceil({self.array}, {self.n}, {self.sign})"
     
     def copy(self):
-        return ceil(self.array, self.n, self.sign)
+        return ceil(self.array.copy(), self.n, self.sign)
