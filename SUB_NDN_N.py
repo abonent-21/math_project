@@ -1,12 +1,12 @@
 # Автор: Марков М.М. Группа - ПМИ-3381
 
+from Types import nat_0, dig
 from SUB_NN_N import SUB_NN_N
 from MUL_ND_N import MUL_ND_N
 from COM_NN_D import COM_NN_D
-from Types import nat_0
 
 
-def SUB_NDN_N(A: nat_0, B: nat_0, D: int) -> nat_0:
+def SUB_NDN_N(A: nat_0, B: nat_0, D: dig) -> nat_0:
     # Вычитание из натурального числа другого натурального,
     # умноженного на цифру, результат - натуральное.
 
