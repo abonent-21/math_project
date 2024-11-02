@@ -1,6 +1,6 @@
 # Автор: Марков М.М. Группа - ПМИ-3381
 
-from Types import nat_0, dig
+from Types import nat_0
 from DIV_NN_Dk import DIV_NN_Dk
 
 
