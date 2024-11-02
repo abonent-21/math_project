@@ -5,13 +5,17 @@
 from Types import ceil
 from POZ_Z_D import POZ_Z_D
 from ABS_Z_Z import ABS_Z_Z
-from TRANS_Z_N import TRANS_Z_N
-from DIV_NN_N import DIV_NN_N
+from DIV_ZZ_Z import DIV_ZZ_Z
 from TRANS_N_Z import TRANS_N_Z
-from MUL_ZM_Z import MUL_ZM_Z
+from MUL_ZZ_Z import MUL_ZZ_Z
+from SUB_ZZ_Z import SUB_ZZ_Z
+
 
 def MOD_ZZ_Z(a: ceil, b: ceil) -> ceil:
-    # Проверка на деление на ноль
+    """
+    Функция вычисляет остаток от деления одного целого числа на другое. 
+    """
+    # Проверка на деление на ноль(не смотря на условие задачи, проверка не будет лишней)
     if POZ_Z_D(b) == 0:
         raise ValueError("Делитель не может быть нулем")
     
@@ -19,15 +23,11 @@ def MOD_ZZ_Z(a: ceil, b: ceil) -> ceil:
     abs_a = ABS_Z_Z(a)
     abs_b = ABS_Z_Z(b)
 
-    # Преобразовываем целые числа в натуральные
-    nat_a = TRANS_Z_N(abs_a)
-    nat_b = TRANS_Z_N(abs_b)
-
     # Производим деление целых значений и получаем целую часть
-    quotient = DIV_ZZ_Z(abs_a, abs_b)
+    quotient = DIV_ZZ_Z(abs_a, abs_b) # целая часть от деления
 
     # Вычисляем произведение целой части на делитель
-    product = TRANS_N_Z(MUL_ZZ_Z(TRANS_N_Z(quotient), b))
+    product = MUL_ZZ_Z(TRANS_N_Z(quotient), b)
 
     # Остаток вычисляется как a - (b * quotient)
     result = SUB_ZZ_Z(a, product)
