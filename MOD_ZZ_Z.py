@@ -27,7 +27,7 @@ def MOD_ZZ_Z(a: ceil, b: ceil) -> ceil:
     quotient = DIV_ZZ_Z(abs_a, abs_b)
 
     # Вычисляем произведение целой части на делитель
-    product = TRANS_N_Z(MUL_ZZ_Z(TRANS_N_Z(quotient), b))
+    product = MUL_ZZ_Z(TRANS_N_Z(quotient), b)
 
     # Остаток вычисляется как a - (b * quotient)
     result = SUB_ZZ_Z(a, product)
