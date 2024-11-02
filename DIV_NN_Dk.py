@@ -1,30 +1,40 @@
 # Автор: Марков М.М. Группа - ПМИ-3381
 
-from Types import nat_0, dig
+from Types import nat_0
 from MUL_Nk_N import MUL_Nk_N
 from COM_NN_D import COM_NN_D
 from SUB_NN_N import SUB_NN_N
 
 
-def DIV_NN_Dk(A: nat_0, B: nat_0, k: int) -> dig:
+def DIV_NN_Dk(A: nat_0, B: nat_0) -> nat_0:
     # Вычисление первой цифры деления большего натурального на меньшее,
     # домноженное на 10^k, где k - номер позиции этой цифры
-    # (номер считается с нуля), результат - цифра
+    # (номер считается с нуля), результат - натуральное   223 / 2 = 111.5 -> 100
 
     if B.array == [0]:  # Проверка на деление на ноль
-        raise ValueError("Делитель не может быть нулем")
+        raise ValueError("Деление на ноль невозможно")
 
-    # Умножаем делитель B на 10^k
-    scaled_B = MUL_Nk_N(B, k)
+    # Инициализация переменных
+    sub_count = 0  # Счетчик, сколько раз B помещается в A
+    k = A.n - B.n  # Позиция, на которую будет домножено
 
-    # Ищем, сколько раз scaled_B помещается в A
-    sub_count = 0
+    # Временная переменная для вычитания
+    tmp = A.copy()
 
-    # Пока A >= scaled_B, выполняем вычитание
-    while COM_NN_D(A, scaled_B) != 1:
-        A = SUB_NN_N(A, scaled_B)  # A = A - scaled_B
+    # Пока A >= B, выполняем вычитание
+    while COM_NN_D(tmp, B) in (0, 2):
+        tmp = SUB_NN_N(tmp, B)  # tmp = tmp - B
         sub_count += 1
 
     # Получаем первую цифру из sub_count
-    first_digit = int(str(sub_count)[0]) if sub_count >= 10 else sub_count
-    return dig(first_digit)
+    first_digit = int(str(sub_count)[0])  # Первая цифра деления
+    k = len(str(sub_count)) - 1  # Позиция цифры деления большего на меньшее
+
+    # Создаем nat_0 с первой цифрой
+    result = nat_0([first_digit], 1)  # Создаем nat_0 с первой цифрой
+
+    # Умножаем первую цифру на 10^k, если k > 0
+    if k > 0:
+        result = MUL_Nk_N(result, k)  # Умножаем на 10^k
+
+    return result
