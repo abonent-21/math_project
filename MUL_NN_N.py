@@ -24,7 +24,7 @@ def MUL_NN_N(A: nat_0, B: nat_0) -> nat_0:
         partial_product = MUL_ND_N(A, digit)  # Умножение A на B[i]
 
         # Сдвиг на нужное количество позиций, преобразуем сдвиг в nat_0
-        shift = nat_0([B.n - 1 - i], 1)
+        shift = B.n - 1 - i
         partial_product = MUL_Nk_N(partial_product, shift)  # Сдвиг на shift позиций
 
         # Добавляем частичное произведение к общему результату
