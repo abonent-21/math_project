@@ -1,33 +1,36 @@
 # ADD_1N_N.py
-# Добавление 1 к натуральному числу с сохранением ведущих нулей
+# Модуль ADD_1N_N
+# Добавление 1 к натуральному числу
+
 # Автор: Самигулин Д.А. Группа - ПМИ-3381
 
-from Types import nat_0
+from Types import nat_0  # Импортируем класс nat_0
 
 def ADD_1N_N(A: nat_0) -> nat_0:
     """
-    Добавляет 1 к натуральному числу A, сохраняя ведущие нули.
+    Добавляет 1 к натуральному числу A.
+
+    :param A: натуральное число (объект nat_0)
+    :return: новое натуральное число (объект nat_0), равное A + 1
     """
-    # Копируем массив цифр
-    A_digits = A.array.copy()
-    original_length = A.n
+    A_copy = A.copy()             # Создаем копию числа A
+    A_digits = A_copy.array.copy()  # Копируем массив цифр числа A
+    index = A_copy.n - 1          # Устанавливаем индекс на последнюю цифру
+    carry = 1                     # Инициализируем перенос как 1 (так как добавляем 1)
+    result_len = A.n              # Изначально длина результата равна длине числа A
 
-    index = len(A_digits) - 1
-    carry = 1
-
-    # Добавляем 1 с конца
+    # Проходим по цифрам с конца
     while index >= 0 and carry:
-        total = A_digits[index] + carry
-        A_digits[index] = total % 10
-        carry = total // 10
-        index -= 1
+        total = A_digits[index] + carry  # Суммируем текущую цифру и перенос
+        A_digits[index] = total % 10     # Обновляем цифру на остаток от деления на 10
+        carry = total // 10              # Обновляем перенос
+        index -= 1                       # Переходим к предыдущей цифре
 
     if carry:
-        # Если после цикла остался перенос, добавляем его в начало массива
-        A_digits = [carry] + A_digits
-        result_len = len(A_digits)
-    else:
-        # Если переноса нет, длина остается прежней
-        result_len = original_length
+        A_digits = [carry] + A_digits    # Добавляем оставшийся перенос в начало массива цифр
+        result_len += 1                  # Увеличиваем длину результата на 1
 
-    return nat_0(A_digits, result_len)
+    A_copy.array = A_digits              # Обновляем массив цифр в копии числа
+    A_copy.n = result_len                # Обновляем длину числа в копии
+
+    return A_copy                        # Возвращаем новое число

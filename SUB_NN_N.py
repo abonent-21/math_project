@@ -1,56 +1,47 @@
 # SUB_NN_N.py
-# Вычитание натуральных чисел (A >= B)
+# Модуль SUB_NN_N
+# Вычитание из первого большего натурального числа второго меньшего или равного
+
 # Автор: Самигулин Д.А. Группа - ПМИ-3381
 
-from COM_NN_D import COM_NN_D
-from Types import nat_0
+from COM_NN_D import COM_NN_D   # Импортируем функцию сравнения натуральных чисел
+from Types import nat_0, dig    # Импортируем классы nat_0 и dig
 
 def SUB_NN_N(A: nat_0, B: nat_0) -> nat_0:
     """
-    Вычитает из натурального числа A натуральное число B (A >= B).
-    Сохраняет ведущие нули в результате.
+    Вычитает натуральное число B из A (A >= B).
+
+    :param A: уменьшаемое число (nat_0)
+    :param B: вычитаемое число (nat_0)
+    :return: разность A - B (nat_0)
     """
-    # Копируем массивы цифр
-    A_digits = A.array.copy()
-    B_digits = B.array.copy()
-
-    # Удаляем ведущие нули только для сравнения
-    A_digits_cmp = A_digits.copy()
-    B_digits_cmp = B_digits.copy()
-
-    while len(A_digits_cmp) > 1 and A_digits_cmp[0] == 0:
-        A_digits_cmp.pop(0)
-    while len(B_digits_cmp) > 1 and B_digits_cmp[0] == 0:
-        B_digits_cmp.pop(0)
-
-    # Проверяем, что A >= B после удаления ведущих нулей
-    temp_A = nat_0(A_digits_cmp, len(A_digits_cmp))
-    temp_B = nat_0(B_digits_cmp, len(B_digits_cmp))
-    if COM_NN_D(temp_A, temp_B) == 1:
+    comparison = COM_NN_D(A, B)           # Сравниваем числа A и B
+    if comparison.value == 1:
         raise ValueError("Первое число должно быть больше или равно второму")
 
-    # Выравниваем длины чисел без удаления ведущих нулей
-    max_len = max(len(A_digits), len(B_digits))
-    A_digits = [0]*(max_len - len(A_digits)) + A_digits
-    B_digits = [0]*(max_len - len(B_digits)) + B_digits
+    A_digits = A.array.copy()             # Копируем массив цифр A
+    B_digits = B.array.copy()             # Копируем массив цифр B
 
-    result_digits = [0]*max_len
-    borrow = 0
+    max_len = A.n                         # Длина результата равна длине A
+    B_digits = [0] * (max_len - B.n) + B_digits  # Выравниваем длину B
 
-    # Вычитание с конца, учитывая ведущие нули
+    result_digits = [0] * max_len         # Инициализируем массив для результата
+    borrow = 0                            # Переменная для займа
+
+    # Вычитаем цифры с конца
     for i in range(max_len - 1, -1, -1):
-        diff = A_digits[i] - B_digits[i] - borrow
+        diff = A_digits[i] - B_digits[i] - borrow  # Вычитаем цифры и заем
         if diff < 0:
-            diff += 10
+            diff += 10                    # Если разность отрицательна, берем заем
             borrow = 1
         else:
             borrow = 0
-        result_digits[i] = diff
+        result_digits[i] = diff           # Записываем разность в результат
 
-    # Если результат ноль, возвращаем nat_0([0], 1)
-    if all(d == 0 for d in result_digits):
-        return nat_0([0], 1)
+    # Удаляем ведущие нули
+    while len(result_digits) > 1 and result_digits[0] == 0:
+        del result_digits[0]
 
-    # Возвращаем результат с сохранением ведущих нулей
-    result_len = len(result_digits)
-    return nat_0(result_digits, result_len)
+    result_len = len(result_digits)       # Обновляем длину результата
+
+    return nat_0(result_digits, result_len)  # Возвращаем разность как объект nat_0

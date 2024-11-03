@@ -1,36 +1,32 @@
 # COM_NN_D.py
-# Сравнение натуральных чисел: A ? B
+# Модуль COM_NN_D
+# Сравнение натуральных чисел:
+# 2 - если первое больше второго,
+# 0 - если равно,
+# 1 - если первое меньше второго.
+
 # Автор: Самигулин Д.А. Группа - ПМИ-3381
 
-from Types import nat_0
+from Types import nat_0, dig  # Импортируем классы nat_0 и dig
 
-def COM_NN_D(A: nat_0, B: nat_0) -> int:
+def COM_NN_D(A: nat_0, B: nat_0) -> dig:
     """
-    Сравнивает два натуральных числа A и B в структуре nat_0.
-    Возвращает:
-    - 2, если A > B
-    - 0, если A == B
-    - 1, если A < B
+    Сравнивает два натуральных числа A и B.
+
+    :param A: первое натуральное число (nat_0)
+    :param B: второе натуральное число (nat_0)
+    :return: результат сравнения (dig)
     """
-    # Удаляем ведущие нули для сравнения
-    A_digits = A.array.copy()
-    B_digits = B.array.copy()
-
-    while len(A_digits) > 1 and A_digits[0] == 0:
-        A_digits.pop(0)
-    while len(B_digits) > 1 and B_digits[0] == 0:
-        B_digits.pop(0)
-
-    # Сравниваем длины
-    if len(A_digits) > len(B_digits):
-        return 2
-    elif len(A_digits) < len(B_digits):
-        return 1
-
-    # Сравниваем цифры
-    for a_digit, b_digit in zip(A_digits, B_digits):
-        if a_digit > b_digit:
-            return 2
-        elif a_digit < b_digit:
-            return 1
-    return 0
+    if A.n > B.n:
+        return dig(2)                    # Если длина A больше, то A > B
+    elif A.n < B.n:
+        return dig(1)                    # Если длина A меньше, то A < B
+    else:
+        for i in range(A.n):
+            a_digit = A.array[i]         # Текущая цифра из A
+            b_digit = B.array[i]         # Текущая цифра из B
+            if a_digit > b_digit:
+                return dig(2)            # Если цифра A больше, то A > B
+            elif a_digit < b_digit:
+                return dig(1)            # Если цифра A меньше, то A < B
+        return dig(0)                    # Если все цифры равны, то A == B
