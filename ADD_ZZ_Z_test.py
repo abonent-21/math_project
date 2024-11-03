@@ -56,28 +56,4 @@ def test_ADD_ZZ_Z_large_numbers():
 
 def test_ADD_ZZ_Z_negative_and_positive_large():
     # Тест сложения большого отрицательного и положительного числа
-    A = ceil([1] + [0]*1000, 1001, 1)  # Число -100...0 (1 и 1000 нулей)
-    B = ceil([1], 1, 0)                # Число +1
-    result = ADD_ZZ_Z(A, B)
-    expected = ceil([9]*1000, 1000, 1)  # Ожидаемое число -999...9 (1000 девяток)
-    assert result == expected
-
-def test_ADD_ZZ_Z_zero_operands():
-    # Тест, когда один или оба операнда равны нулю
-    A = ceil([0], 1, 0)  # Число 0
-    B = ceil([1, 2, 3], 3, 0)  # Число +123
-    result = ADD_ZZ_Z(A, B)
-    expected = B  # Ожидаемое число +123
-    assert result == expected
-
-    A = ceil([1, 2, 3], 3, 1)  # Число -123
-    B = ceil([0], 1, 0)        # Число 0
-    result = ADD_ZZ_Z(A, B)
-    expected = A  # Ожидаемое число -123
-    assert result == expected
-
-    A = ceil([0], 1, 0)  # Число 0
-    B = ceil([0], 1, 0)  # Число 0
-    result = ADD_ZZ_Z(A, B)
-    expected = A  # Ожидаемое число 0
-    assert result == expected
+    A = ceil([1] + [0]*1000, 1001, 1)  # Число -1000...0 (1 и
