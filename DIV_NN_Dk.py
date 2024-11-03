@@ -1,6 +1,6 @@
 # Автор: Марков М.М. Группа - ПМИ-3381
 
-from Types import nat_0
+from Types import nat_0, dig
 from MUL_Nk_N import MUL_Nk_N
 from COM_NN_D import COM_NN_D
 from SUB_NN_N import SUB_NN_N
@@ -21,7 +21,7 @@ def DIV_NN_Dk(A: nat_0, B: nat_0) -> nat_0:
     tmp = A.copy()
 
     # Пока A >= B, выполняем вычитание
-    while COM_NN_D(tmp, B) in (0, 2):
+    while COM_NN_D(tmp, B).value in (0, 2):
         tmp = SUB_NN_N(tmp, B)  # tmp = tmp - B
         sub_count += 1
 
