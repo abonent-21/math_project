@@ -14,7 +14,7 @@ def SUB_NDN_N(A: nat_0, B: nat_0, D: dig) -> nat_0:
     BD = MUL_ND_N(B, D)
 
     # Проверяем, что A >= B * D для неотрицательного результата
-    if COM_NN_D(A, BD) == 1:
+    if COM_NN_D(A, BD).value == 1:
         raise ValueError("Результат вычитания будет отрицательным")
 
     # Вычитаем B * D из A
