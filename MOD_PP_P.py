@@ -20,7 +20,7 @@ def MOD_PP_P(a: P, b: P) -> P: # функцию писал в момент, ко
     # Получаем частное от деления многочленов
     quotient = DIV_PP_P(a, b)
     
-    # Остаток такой result = x - (quotient * y)
+    # Остаток будет такой result = x - (quotient * y)
     # Умножаем частное на делитель
     mid = MUL_PP_P(quotient, y)
     
