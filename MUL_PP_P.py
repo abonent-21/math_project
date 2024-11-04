@@ -3,9 +3,8 @@
 # Автор: Сычев Н.С. Группа - ПМИ-3381
 
 # struct: Многочлен с рациональными коэффициентами m – степень многочлена и массив C коэффициентов (P)
-# struct: rat = self, num: ceil, den: nat_0):
 
-from Types import P, rat
+from Types import P, rat, ceil_nat_0
 from MUL_Pxk_P import MUL_Pxk_P
 from MUL_Pxk_P import MUL_Pxk_P
 from ADD_PP_P import ADD_PP_P

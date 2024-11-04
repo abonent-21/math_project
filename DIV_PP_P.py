@@ -5,7 +5,7 @@
 # struct: Многочлен с рациональными коэффициентами m – степень многочлена и массив C коэффициентов (P)
 # struct: rat = self, num: ceil, den: nat_0):
 
-from Types import P, rat
+from Types import P, rat, ceil_nat_0
 from DEG_P_N import DEG_P_N
 from DIV_QQ_Q import DIV_QQ_Q
 from MUL_PQ_P import MUL_PQ_P
