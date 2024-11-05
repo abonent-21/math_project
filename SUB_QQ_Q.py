@@ -24,7 +24,7 @@ def SUB_QQ_Q(minuend_accepted: rat, subtrahend_accepted: rat) -> rat:
     :return: Результат вычитания двух дробей в несократимой форме, тип rat
     """
 
-    result = rat(num=nat_0([0], 1), den=ceil([0], 1,0))
+    result = rat(num=ceil([0], 1,0), den=nat_0([1], 1))
     minuend = minuend_accepted.copy()
     subtrahend = subtrahend_accepted.copy()
 

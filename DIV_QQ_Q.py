@@ -23,7 +23,7 @@ def DIV_QQ_Q(divisible_accepted: rat, divider_accepted: rat) -> rat:
     if not NZER_N_B(TRANS_Z_N(divider_accepted.num)):
         raise ValueError("Деление на ноль невозможно")
 
-    result = rat(num=nat_0([0], 1), den=ceil([0], 1, 0))
+    result = rat(num=ceil([0], 1,0), den=nat_0([1], 1))
     divisible = divisible_accepted.copy()
     divider = divider_accepted.copy()
 

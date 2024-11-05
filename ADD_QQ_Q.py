@@ -22,7 +22,7 @@ def ADD_QQ_Q(summand_accepted: rat, addend_accepted: rat) -> rat:
         :param addend_accepted: Второе слагаемое (тип rat)
         :return: Результат сложения двух дробей в несократимой форме (тип rat)
     """
-    result = rat(num=nat_0([0], 1), den=ceil([0], 1,0))
+    result = rat(num=ceil([0], 1,0), den=nat_0([1], 1))
     summand = summand_accepted.copy()
     addend = addend_accepted.copy()
 

@@ -18,7 +18,7 @@ def MUL_QQ_Q(multiplier_one_accepted: rat, multiplier_two_accepted: rat) -> rat:
         :return: Результат умножения двух дробей в несократимой форме (тип rat)
     """
 
-    result = rat(num=nat_0([0], 1), den=ceil([0], 1, 0))
+    result = rat(num=ceil([0], 1,0), den=nat_0([1], 1))
     multiplier_one = multiplier_one_accepted.copy()
     multiplier_two = multiplier_two_accepted.copy()
 
