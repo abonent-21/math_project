@@ -53,3 +53,20 @@ class ceil(object):
 
     def copy(self):
         return ceil(self.array.copy(), self.n, self.sign)
+
+class rat(object):
+    def __init__(self, num: ceil, den: nat_0):
+        assert den.array != [0], "Знаменатель не может быть равен 0"
+        self.num = num
+        self.den = den
+
+    def __eq__(self, other):
+        if isinstance(other, rat):
+            return self.num == other.num and self.den == other.den
+        return False
+
+    def __repr__(self):
+        return f"rat({self.num}, {self.den})"
+
+    def copy(self):
+        return rat(self.num.copy(), self.den.copy())
