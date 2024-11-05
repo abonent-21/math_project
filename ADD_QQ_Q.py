@@ -38,7 +38,7 @@ def ADD_QQ_Q(summand_accepted: rat, addend_accepted: rat) -> rat:
 
 
     # Находим наименьшее общее кратное знаменателей
-    result.den = LCM_NN_N(TRANS_Z_N(summand.den), TRANS_Z_N(addend.den))
+    result.den = LCM_NN_N(summand.den, addend.den)
     # Приводим числители к общему знаменателю и складываем их
     # Формула:
     # (a/b) + (c/d) = (a*(LCM/b) + c*(LCM/d)) / LCM
