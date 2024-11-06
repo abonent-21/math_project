@@ -6,7 +6,7 @@ from MUL_Pxk_P import MUL_Pxk_P
 from ADD_PP_P import ADD_PP_P
 
 
-def MUL_PP_P(a: pol, b: pol) -> pol: # функцию писал в момент, когда еще не был сделан класс P. потом подстроюсь под него.
+def MUL_PP_P(a: pol, b: pol) -> pol:
     """
     Функция для вычисления результата умножения полиномов.
     """
