@@ -1,14 +1,12 @@
 # Автор: Сычев Н.С. Группа - ПМИ-3381
 
-# struct: Многочлен с рациональными коэффициентами m – степень многочлена и массив C коэффициентов (P)
-
-from Types import P
+from Types import pol
 from DIV_PP_P import DIV_PP_P
 from MUL_PP_P import MUL_PP_P
 from SUB_PP_P import SUB_PP_P
 
 
-def MOD_PP_P(a: P, b: P) -> P: # функцию писал в момент, когда еще не был сделан класс P. потом подстроюсь под него.
+def MOD_PP_P(a: pol, b: pol) -> pol: 
     """
     Функция для вычисления остатка от деления многочлена на многочлен при делении с остатком.
     """
