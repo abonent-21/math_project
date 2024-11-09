@@ -38,7 +38,7 @@ def SUB_QQ_Q(minuend_accepted: rat, subtrahend_accepted: rat) -> rat:
         # Сокращение полученной дроби до несократимой формы и возврат результата
         return RED_Q_Q(minuend)
     # Находим наименьшее общее кратное знаменателей
-    result.den = LCM_NN_N(TRANS_Z_N(minuend.den), TRANS_Z_N(subtrahend.den))
+    result.den = LCM_NN_N(minuend.den, subtrahend.den)
 
     # Приводим числители к общему знаменателю и вычитаем их
     # Формула:
