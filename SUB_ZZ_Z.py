@@ -16,12 +16,6 @@ def SUB_ZZ_Z(A: ceil, B: ceil) -> ceil:
     sign_A = POZ_Z_D(A)
     sign_B = POZ_Z_D(B)
 
-    # Если одно из чисел равно нулю
-    if sign_A.value == 0:
-        return MUL_ZM_Z(B)  # -B
-    if sign_B.value == 0:
-        return A  # A - 0 = A
-
     # Вычисляем абсолютные значения A и B
     abs_A = TRANS_Z_N(ABS_Z_Z(A))
     abs_B = TRANS_Z_N(ABS_Z_Z(B))
