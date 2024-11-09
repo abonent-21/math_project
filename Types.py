@@ -75,8 +75,9 @@ class rat(object):
 
 class pol(object):
     def __init__(self, coefficients: list, m: int):
-        assert m == len(coefficients) - 1, "Степень многочлена должна быть на 1 меньше длины массива коэффициентов"
-        assert all(isinstance(coef, rat) for coef in coefficients), "Все элементы должны быть экземплярами класса rat"
+        if coefficients != [] or m != 0:
+            assert m == len(coefficients) - 1, "Степень многочлена должна быть на 1 меньше длины массива коэффициентов"
+            assert all(isinstance(coef, rat) for coef in coefficients), "Все элементы должны быть экземплярами класса rat"
         self.coefficients = coefficients
         self.m = m  # Явное указание степени многочлена
 
