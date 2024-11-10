@@ -2,7 +2,7 @@
 # Возвращает частное от деления целого на целое (делитель отличен от нуля)
 # Автор: Сычев Н.С. Группа - ПМИ-3381
 
-from Types import ceil
+from Types import ceil, dig
 from POZ_Z_D import POZ_Z_D
 from ABS_Z_Z import ABS_Z_Z
 from TRANS_Z_N import TRANS_Z_N
@@ -16,7 +16,7 @@ def DIV_ZZ_Z(a: ceil, b: ceil) -> ceil:
     Функция для деления двух целых чисел.
     """
     # Проверка на деление на ноль (не смотря на условие задачи, проверка не будет лишней).
-    if POZ_Z_D(b) == 0:
+    if POZ_Z_D(b) == dig(0):
         raise ValueError("Делитель не может быть нулем")
         
     # Получаем абсолютные значения чисел (учет знака будет произведен позже).
