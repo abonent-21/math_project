@@ -13,7 +13,7 @@ def NZER_N_B(A: nat_0) -> bool:
     :param A: натуральное число (nat_0)
     :return: True, если A != 0, иначе False
     """
-    for digit in A.array:
-        if digit != 0:
-            return True                 # Если хотя бы одна цифра не ноль, число ненулевое
-    return False                        # Все цифры нули, число равно нулю
+    if A.n != 1:
+        return True  # Число имеет более одной цифры, значит оно не ноль
+    else:
+        return A.array[0] != 0  # Если одна цифра, проверяем не ноль ли она
