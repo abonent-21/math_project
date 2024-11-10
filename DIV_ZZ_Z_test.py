@@ -1,4 +1,3 @@
-# Пример тестового файла для DIV_ZZ_Z.py
 from Types import ceil
 from DIV_ZZ_Z import DIV_ZZ_Z
 

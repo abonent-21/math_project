@@ -2,7 +2,6 @@ import pytest
 from Types import ceil, nat_0, dig
 from MUL_ZZ_Z import MUL_ZZ_Z
 
-# MUL_ZZ_Z
 def test_mul_zz_positive_numbers():
     # Тесты для положительных чисел
     a = ceil([1, 2, 3], 3, 0)  # Представляет положительное число 123

@@ -2,8 +2,6 @@ from Types import ceil
 from MOD_ZZ_Z import MOD_ZZ_Z
 
 def test_mod_zz_z():
-    # Тестирование функции MOD_ZZ_Z
-
     # Тесты на положительных числах
     assert MOD_ZZ_Z(ceil([5], 1, 0), ceil([2], 1, 0)) == ceil([1], 1, 0)  # 5 % 2 = 1
     assert MOD_ZZ_Z(ceil([1, 0], 2, 0), ceil([3], 1, 0)) == ceil([1], 1, 0) # 10 % 3 = 1
