@@ -1,37 +1,46 @@
 # Автор: Сычев Н.С. Группа - ПМИ-3381
 
-from Types import pol, rat, ceil_nat_0
+from Types import pol, rat, ceil, nat_0
 from DEG_P_N import DEG_P_N
+from SUB_NN_N import SUB_NN_N
 from DIV_QQ_Q import DIV_QQ_Q
-from MUL_PQ_P import MUL_PQ_P
 from MUL_Pxk_P import MUL_Pxk_P
+from MUL_PQ_P import MUL_PQ_P
 from SUB_PP_P import SUB_PP_P
 
 
-def DIV_PP_P(a: pol, b: pol) -> pol: 
+def DIV_PP_P(a: pol, b: pol) -> pol:
     """
     Функция для вычисления результата деления полиномов.
     """
-    x = a.deepcopy() 
-    y = b.deepcopy()
+    arr1 = a.copy()
+    arr2 = b.copy()
+
+    st1 = DEG_P_N(arr1)  # Степень первого многочлена
+    st2 = DEG_P_N(arr2)  # Степень второго многочлена
+        
+    ans_st = SUB_NN_N(st1, st2) # Вычисляем разницу степеней
+    ans_len = int(''.join(map(str, ans_st.array))) + 1 
     
-    if DEG_P_N(b) == 0:  # проверяем степень второго полинома, вдруг это просто число. 
-        # чтобы не писать сложный код деления, мы умножим первый многочлен на обратное значение
-        divider = DIV_QQ_Q(rat(ceil([1], 1, 0), nat_0([1], 1)), y.coefficients[0])
-        return MUL_PQ_P(x, divider)
+    # Инициализируем ответ с начальными коэффициентами нулями
+    ans = pol([rat(ceil([0], 1, 0), nat_0([1], 1)) for _ in range(ans_len)], ans_len - 1)
     
-    midcoef = [] # список, который используется для хранения коэффициентов
-    result = pol([], 0) # для хранения результата деления.
-    
-    while DEG_P_N(x) >= DEG_P_N(y):  # пока степень первого больше или равна второго
-        diff = DEG_P_N(x) - DEG_P_N(y)  # разница их степеней
-        # деление старшего коэффициента первого и второго для определения коэффициента в частном
-        coef = DIV_QQ_Q(x.coefficients[0], y.coefficients[0]) 
-        mid = MUL_Pxk_P(y, diff)  # домножаем на степень
-        mid = MUL_PQ_P(mid, coef)
-        x = SUB_PP_P(x, mid)  # убираем старший член постепенно уменьшая степень
-        midcoef.append(coef) # коэффициент добавляется в список коэффициентов частного.
-    
-    result.degree = len(midcoef) - 1
-    result.coefficients = midcoef
-    return result
+    # Расчет частного
+    for i in range(ans_len):
+        # Делим старший коэффициент первого полинома на старший коэффициент второго полинома
+        tmp = DIV_QQ_Q(arr1.coefficients[0], arr2.coefficients[0])
+        ans.coefficients[i] = tmp
+        
+        # Умножаем второй полином на соответствующую степень x, чтобы вычесть его из первого
+        tmp_pol = MUL_Pxk_P(arr2, nat_0([ans_len - 1 - i], 1))  # Умножаем на x^(степень - i)
+        arrSUB = MUL_PQ_P(tmp_pol, ans.coefficients[i]) # Умножаем второй полином на коэффициент частного
+
+
+        # Обновляем первый полином, вычитая из него результат умножения
+        arr1 = SUB_PP_P(arr1, arrSUB)
+        
+        # Удаляем ведущие нули из первого полинома
+        while arr1.coefficients and arr1.coefficients[0] == rat(ceil([0], 1, 0), nat_0([1], 1)):
+            arr1.coefficients.pop(0)
+
+    return ans
