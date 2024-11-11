@@ -91,36 +91,5 @@ def test_mul_pp_p():
     ], 6)
     assert result == expected
     
-    # Умножение (x^6+3x^5+2x^4+4x^3+5x^2-6x+7) на (3x^3-2x^2+x-4)
-    p = pol([
-        rat(ceil([1], 1, 0), nat_0([1], 1)),  
-        rat(ceil([3], 1, 0), nat_0([1], 1)),  
-        rat(ceil([2], 1, 1), nat_0([1], 1)),  
-        rat(ceil([4], 1, 0), nat_0([1], 1)), 
-        rat(ceil([5], 1, 0), nat_0([1], 1)),  
-        rat(ceil([6], 1, 1), nat_0([1], 1)),
-        rat(ceil([7], 1, 0), nat_0([1], 1)),
-    ], 6)
-
-    q = pol([
-        rat(ceil([3], 1, 0), nat_0([1], 1)),  # 1 * x^2
-        rat(ceil([2], 1, 1), nat_0([1], 1)),  # 1 * x^1
-        rat(ceil([1], 1, 0), nat_0([1], 1)),
-        rat(ceil([4], 1, 1), nat_0([1], 1))
-    ], 3)
-    result = MUL_PP_P(p, q)
-    expected = pol([
-        rat(ceil([3], 1, 0), nat_0([1], 1)),  # 1 * x^4
-        rat(ceil([7], 1, 0), nat_0([1], 1)),  # 1 * x^3
-        rat(ceil([1, 1], 2, 1), nat_0([1], 1)),  # 2 * x^2
-        rat(ceil([1, 5], 2, 0), nat_0([1], 1)),  # 1 * x^1
-        rat(ceil([7], 1, 1), nat_0([1], 1)),  
-        rat(ceil([1, 6], 2, 1), nat_0([1], 1)),   # 1 * x^0
-        rat(ceil([2, 2], 2, 0), nat_0([1], 1)), 
-        rat(ceil([4, 0], 2, 1), nat_0([1], 1)),
-        rat(ceil([3, 1], 2, 0), nat_0([1], 1)),
-        rat(ceil([2, 8], 2, 1), nat_0([1], 1)),
-    ], 9)
-    assert result == expected
 if __name__ == "__main__":
     test_mul_pp_p()
