@@ -17,6 +17,7 @@ def MUL_PP_P(arr1: pol, arr2: pol) -> pol:
     st2 = DEG_P_N(arr2)  # Степень второго многочлена
     ans_st = ADD_NN_N(st1, st2) # Вычисляем степень итогового полинома
     ans_st = ADD_1N_N(ans_st) # Прибавляем единицу для правильного подсчета результата.
+    
     ans_len = int(''.join(map(str, ans_st.array))) # Переводим в int для правильной инициализации итогового массива
     
     result = pol([rat(ceil([0], 1, 0), nat_0([1], 1)) for _ in range(ans_len)], ans_len - 1)
@@ -44,6 +45,6 @@ def MUL_PP_P(arr1: pol, arr2: pol) -> pol:
         # Теперь складываем коэффициенты с одинаковыми степенями
         for j in range(max(len_result, len_i)):
             result.coefficients[j] = ADD_QQ_Q(result.coefficients[j], i.coefficients[j])
-            
+     
     return result
 
