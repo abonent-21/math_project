@@ -10,17 +10,17 @@ def MOD_PP_P(a: pol, b: pol) -> pol:
     """
     Функция для вычисления остатка от деления многочлена на многочлен при делении с остатком.
     """
-    x = a.copy()
-    y = b.copy()
+    arr1 = a.copy()
+    arr2 = b.copy()
     
     # Получаем частное от деления многочленов
-    quotient = DIV_PP_P(a, b)
+    quotient = DIV_PP_P(arr1, arr2)
     
-    # Остаток будет такой result = x - (quotient * y)
+    # Остаток будет такой result = arr1 - (quotient * arr2)
     # Умножаем частное на делитель
-    mid = MUL_PP_P(quotient, y)
+    mid = MUL_PP_P(quotient, arr2)
     
     # Вычитаем полученное произведение из исходного многочлена
-    result = SUB_PP_P(x, mid)
+    result = SUB_PP_P(arr1, mid)
     
     return result

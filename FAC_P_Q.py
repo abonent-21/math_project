@@ -5,6 +5,7 @@ from ABS_Z_Z import ABS_Z_Z
 from GCF_NN_N import GCF_NN_N
 from LCM_NN_N import LCM_NN_N
 from TRANS_N_Z import TRANS_N_Z
+from DIV_NN_N import DIV_NN_N
 
 
 def FAC_P_Q(p: pol) -> rat:
@@ -34,7 +35,12 @@ def FAC_P_Q(p: pol) -> rat:
     if p.m > 1: # если коэффицентов полинома больше 1, то на каждой итерации вычисляем НОК. 
         for i in denominators[1:]: 
             lcm = LCM_NN_N(lcm, i)
-        
-    gcd = TRANS_N_Z(gcd) # Перевод значения НОДа в целое, т.к. на выходе рац. число.
+            
+    # На выходе имеем дробь. Сделаем проверку на то, сократима она или нет.
+    common_gcd = GCF_NN_N(gcd, lcm)  # Находим общий НОД для числителя и знаменателя
+    gcd = DIV_NN_N(gcd, common_gcd) 
+    lcm = DIV_NN_N(lcm, common_gcd) 
+    
+    gcd = TRANS_N_Z(gcd) # Перевод значения НОДа в целое, т.к. на выходе рац. число
     
     return rat(gcd, lcm) 
