@@ -23,9 +23,4 @@ def MUL_PQ_P(P: pol, Q: rat) -> pol:
     # Степень остается неизменной
     max_degree = P.m
 
-    # Удаляем трейлинг нули
-    while len(result_coeffs) > 1 and result_coeffs[-1].num.array == [0]:
-        result_coeffs.pop()
-        max_degree -= 1
-
     return pol(coefficients=result_coeffs, m=max_degree)

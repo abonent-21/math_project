@@ -36,9 +36,4 @@ def SUB_PP_P(P1: pol, P2: pol) -> pol:
         subtracted = SUB_QQ_Q(c1, c2)
         result_coeffs.append(subtracted)
 
-    # Удаляем трейлинг нули
-    while len(result_coeffs) > 1 and result_coeffs[-1].num.array == [0]:
-        result_coeffs.pop()
-        max_degree -= 1
-
     return pol(coefficients=result_coeffs, m=max_degree)
