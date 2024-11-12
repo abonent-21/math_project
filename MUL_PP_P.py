@@ -9,10 +9,13 @@ from MUL_PQ_P import MUL_PQ_P
 from ADD_PP_P import ADD_PP_P
 
 
-def MUL_PP_P(arr1: pol, arr2: pol) -> pol:
+def MUL_PP_P(a: pol, b: pol) -> pol:
     """
-    Умножает два многочлена P1 и P2.
+    Функция для вычисления результата умножения двух полиномов.
     """
+    arr1 = a.copy()
+    arr2 = b.copy()
+    
     st1 = DEG_P_N(arr1)  # Степень первого многочлена
     st2 = DEG_P_N(arr2)  # Степень второго многочлена
     ans_st = ADD_NN_N(st1, st2) # Вычисляем степень итогового полинома
