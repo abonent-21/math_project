@@ -4,6 +4,7 @@ class nat_0(object):
         assert all(0 <= i <= 9 for i in array), "Все элементы должны быть цифрами от 0 до 9"
         self.array = array
         self.n = n
+        
     def __eq__(self, other):
         if isinstance(other, nat_0):
             return self.array == other.array and self.n == other.n

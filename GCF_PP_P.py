@@ -1,33 +1,32 @@
 # # Автор: Козлов Г.Е. Группа - ПМИ-3381
 
-from Types import rat, pol, ceil, nat_0
+from Types import rat, pol, ceil, nat_0, dig
 from MOD_PP_P import MOD_PP_P
-from MUL_PP_P import MUL_PP_P
+from DEG_P_N import DEG_P_N
+from COM_NN_D import COM_NN_D
+
 
 def GCF_PP_P(first_pol: pol, second_pol: pol) -> pol:
     """
     НОД многочленов
     """
-    pass
+    assert isinstance(first_pol, pol), "first_pol не принадлежит классу полиномов"
+    assert isinstance(second_pol, pol), "second_pol не принадлежит классу полиномов"
 
-p = pol([
-    rat(ceil([1], 1, 0), nat_0([1], 1)),  # 1 * x^0
-    rat(ceil([1], 1, 0), nat_0([1], 1))   # 1 * x^1
-], 1)
-q = pol([
-    rat(ceil([3], 1, 0), nat_0([1], 1)),  # 3 * x^0
-], 0)
+    f_pol = first_pol.copy()
+    s_pol = second_pol.copy()
 
-result = MUL_PP_P(p, q)
+    null_pol = pol([rat(ceil([0], 1, 0), nat_0([1], 1))], 0) # нулевой поленом
 
-p1 = pol([
-    rat(ceil([1], 1, 0), nat_0([1], 1)),  # 1 * x^0
-    rat(ceil([2], 1, 0), nat_0([1], 1)),  # 2 * x^1
-    rat(ceil([1], 1, 0), nat_0([1], 1))   # 1 * x^2
-], 2)
-p2 = pol([
-    rat(ceil([1], 1, 0), nat_0([1], 1)),  # 1 * x^0
-    rat(ceil([1], 1, 0), nat_0([1], 1))   # 1 * x^1
-], 1)
+    pw_f_pol: nat_0 = DEG_P_N(f_pol)
+    pw_s_pol: nat_0 = DEG_P_N(s_pol)
 
-result = MOD_PP_P(p1, p2)
+    if (COM_NN_D(pw_f_pol, pw_s_pol) == dig(1)): # если первый полином меньше второго, то меняем их меcтами
+        f_pol, s_pol = s_pol, f_pol
+    
+    while s_pol != null_pol:
+        ost_pol = MOD_PP_P(f_pol, s_pol)
+        f_pol = s_pol
+        s_pol = ost_pol
+    
+    return f_pol
