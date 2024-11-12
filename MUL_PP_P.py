@@ -15,7 +15,11 @@ def MUL_PP_P(a: pol, b: pol) -> pol:
     """
     arr1 = a.copy()
     arr2 = b.copy()
-    
+
+    # проверяем степень второго полинома, вдруг это просто число 
+    if DEG_P_N(arr2) == nat_0([0], 1):
+        return MUL_PQ_P(arr1, arr2.coefficients[0])
+
     st1 = DEG_P_N(arr1)  # Степень первого многочлена
     st2 = DEG_P_N(arr2)  # Степень второго многочлена
     ans_st = ADD_NN_N(st1, st2) # Вычисляем степень итогового полинома

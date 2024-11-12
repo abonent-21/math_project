@@ -2,6 +2,22 @@ from Types import pol, rat, ceil, nat_0
 from MUL_PP_P import MUL_PP_P
 
 def test_mul_pp_p():
+    # Умножение (x + 1) на 3
+    p = pol([
+        rat(ceil([1], 1, 0), nat_0([1], 1)),  # 1 * x^0
+        rat(ceil([1], 1, 0), nat_0([1], 1))   # 1 * x^1
+    ], 1)
+    q = pol([
+        rat(ceil([3], 1, 0), nat_0([1], 1)),  # 3 * x^0
+    ], 0)
+    
+    result = MUL_PP_P(p, q)
+    expected = pol([
+        rat(ceil([3], 1, 0), nat_0([1], 1)),  # 3 * x^0
+        rat(ceil([3], 1, 0), nat_0([1], 1))   # 3 * x^1
+    ], 1)
+    assert result == expected
+    
     # Умножение (x + 1) на (x + 1)
     p = pol([
         rat(ceil([1], 1, 0), nat_0([1], 1)),  # 1 * x^0
