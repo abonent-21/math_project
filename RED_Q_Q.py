@@ -10,7 +10,7 @@ from Types import rat
 # Функция для сокращения рационального числа
 def RED_Q_Q(val: rat) -> rat:
     # Вычисляем НОД абсолютного значения числителя и знаменателя
-    n = GCF_NN_N(ABS_Z_N(val.num), val.den)
+    n = GCF_NN_N(ABS_Z_Z(val.num), val.den)
     
     # Делим числитель на НОД, чтобы сократить дробь
     val.num = DIV_ZZ_Z(val.num, n)
