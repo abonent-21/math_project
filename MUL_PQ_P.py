@@ -1,6 +1,6 @@
 # MUL_PQ_P.py
 # Функция для умножения многочлена на рациональное число
-# Автор: [Ваше Имя]
+# Автор: [Самигулин Денис] ПМИ-3381
 
 from Types import pol, rat, ceil, nat_0
 from MUL_QQ_Q import MUL_QQ_Q

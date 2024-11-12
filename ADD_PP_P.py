@@ -1,10 +1,9 @@
 # ADD_PP_P.py
 # Функция для сложения двух многочленов
-# Автор: [Ваше Имя]
+# Автор: [Самигулин Денис] ПМИ-3381
 
 from Types import pol, rat, ceil, nat_0
 from ADD_QQ_Q import ADD_QQ_Q
-from SUB_ZZ_Z import SUB_ZZ_Z  # Возможно, потребуется для создания нулевых коэффициентов
 
 
 def ADD_PP_P(P1: pol, P2: pol) -> pol:
