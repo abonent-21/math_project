@@ -1,7 +1,7 @@
 # Выполнил Кулаков Алексей 3381
 
 # Импортируем необходимые функции
-from ABS_Z_N import ABS_Z_N  
+from ABS_Z_Z import ABS_Z_Z  
 from GCF_NN_N import GCF_NN_N  
 from DIV_ZZ_Z import DIV_ZZ_Z  
 from DIV_NN_N import DIV_NN_N  

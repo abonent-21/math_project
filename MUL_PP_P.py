@@ -1,6 +1,6 @@
 # Автор: Сычев Н.С. Группа - ПМИ-3381
 
-from Types import pol, rat, ceil_nat_0
+from Types import pol, rat
 from MUL_Pxk_P import MUL_Pxk_P
 from MUL_Pxk_P import MUL_Pxk_P
 from ADD_PP_P import ADD_PP_P

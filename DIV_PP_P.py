@@ -1,6 +1,6 @@
 # Автор: Сычев Н.С. Группа - ПМИ-3381
 
-from Types import pol, rat, ceil_nat_0
+from Types import pol, rat, ceil, nat_0
 from DEG_P_N import DEG_P_N
 from DIV_QQ_Q import DIV_QQ_Q
 from MUL_PQ_P import MUL_PQ_P
@@ -12,8 +12,8 @@ def DIV_PP_P(a: pol, b: pol) -> pol:
     """
     Функция для вычисления результата деления полиномов.
     """
-    x = a.deepcopy() 
-    y = b.deepcopy()
+    x = a.copy() 
+    y = b.copy()
     
     if DEG_P_N(b) == 0:  # проверяем степень второго полинома, вдруг это просто число. 
         # чтобы не писать сложный код деления, мы умножим первый многочлен на обратное значение
