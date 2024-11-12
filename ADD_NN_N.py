@@ -15,13 +15,13 @@ def ADD_NN_N(A: nat_0, B: nat_0) -> nat_0:
     :param B: второе натуральное число (nat_0)
     :return: сумма A + B (nat_0)
     """
+    # Изначально предполагаем, что A длиннее или равно B
+    longer = A
+    shorter = B
+
     comparison = COM_NN_D(A, B)          # Сравниваем числа A и B
-    if comparison.value == 2 or comparison.value == 0:
-        longer = A                       # Если A >= B, то A - длиннее или равной длины
-        shorter = B                      # B - короче или равной длины
-    else:
-        longer = B                       # Иначе B длиннее
-        shorter = A                      # A короче
+    if comparison.value == 1:
+        longer, shorter = B, A            # Если A < B, то B - длиннее
 
     max_len = longer.n                   # Длина результата равна длине большего числа
     result_len = max_len                 # Инициализируем длину результата
