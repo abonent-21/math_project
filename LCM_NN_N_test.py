@@ -134,13 +134,12 @@ def test_lcm_large_numbers():
     # LCM = (123456 * 789012) / 12 = 123456 * 65751 = 8117355456
     expected1 = int_to_nat0(8117355456)
 
-    # Второй тестовый случай временно закомментируйте или уменьшите размер
-    # A2 = nat_0([9, 8, 7, 6, 5, 4, 3, 2, 1], 9)  # 987654321
-    # B2 = nat_0([1, 2, 3, 4, 5, 6, 7, 8, 9], 9)  # 123456789
-    # expected2 = int_to_nat0(13548070123626141)
+    A2 = nat_0([9, 8, 7, 6, 5, 4, 3, 2, 1], 9)  # 987654321
+    B2 = nat_0([1, 2, 3, 4, 5, 6, 7, 8, 9], 9)  # 123456789
+    expected2 = int_to_nat0(13548070123626141)
 
     assert LCM_NN_N(A1, B1) == expected1
-    # assert LCM_NN_N(A2, B2) == expected2
+    assert LCM_NN_N(A2, B2) == expected2
 
 def test_lcm_with_large_prime():
     """

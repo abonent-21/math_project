@@ -24,7 +24,7 @@ def DIV_NN_N(A: nat_0, B: nat_0) -> nat_0:
         raise ValueError("Делитель не может быть нулем")
 
     if COM_NN_D(A, B).value == 0:
-        return nat_0([1], 1)  #
+        return nat_0([1], 1)  # Проверка на равенство чисел
     elif COM_NN_D(A, B).value == 1:
         return nat_0([0], 1)  # Проверка, чтобы A было больше или равно B
 

@@ -33,6 +33,4 @@ def LCM_NN_N(A: nat_0, B: nat_0) -> nat_0:
     num2 = B.copy()
 
     # Вычисляем НОК по формуле: НОК(A, B) = (A * B) / НОД(A, B)
-    zn = MUL_NN_N(num1, num2)
-    ll = GCF_NN_N(num1, num2)
-    return DIV_NN_N(zn, ll)
+    return DIV_NN_N(MUL_NN_N(num1, num2), GCF_NN_N(num1, num2))

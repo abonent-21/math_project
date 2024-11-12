@@ -53,6 +53,7 @@ class ceil(object):
     def copy(self):
         return ceil(self.array.copy(), self.n, self.sign)
 
+
 class rat(object):
     def __init__(self, num: ceil, den: nat_0):
         assert den.array != [0], "Знаменатель не может быть равен 0"
