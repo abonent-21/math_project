@@ -76,9 +76,10 @@ def test_mod_pp_p():
     ], 3)  # p4 = x^3 + x^2 + 1
 
     result = MOD_PP_P(p4, p1)
-    expected = pol([rat(ceil([2], 1, 0), nat_0([1], 1))],
-                   [rat(ceil([1], 1, 0), nat_0([1], 1))], 1)
+    expected = pol([rat(ceil([2], 1, 0), nat_0([1], 1)),
+                   rat(ceil([1], 1, 0), nat_0([1], 1))], 1)
     assert result == expected
+
 
 if __name__ == "__main__":
     test_mod_pp_p()

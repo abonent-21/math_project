@@ -1,4 +1,4 @@
-# # Автор: Козлов Г.Е. Группа - ПМИ-3381
+# Автор: Козлов Г.Е. Группа - ПМИ-3381
 
 from Types import rat, pol, ceil, nat_0, dig
 from MOD_PP_P import MOD_PP_P
