@@ -112,7 +112,7 @@ class pol(object):
             else:
                 result += str(i) + f' x^{pow} + '
             pow += 1
-        result += str(self.coefficients[-1])
+        result += str(self.coefficients[-1]) + ' x^{pow}'
         return result
 
     def copy(self):
