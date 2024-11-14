@@ -20,13 +20,19 @@ def SUB_ZZ_Z(A: ceil, B: ceil) -> ceil:
     if sign_B == dig(0):
         return A
 
+    # Если одно из чисел равно нулю
+    if sign_A.value == 0:
+        return MUL_ZM_Z(B)  # -B
+    if sign_B.value == 0:
+        return A  # A - 0 = A
+
     # Вычисляем абсолютные значения A и B
     abs_A = TRANS_Z_N(ABS_Z_Z(A))
     abs_B = TRANS_Z_N(ABS_Z_Z(B))
 
     # Если A и B имеют одинаковый знак
     if sign_A == sign_B:
-        if COM_NN_D(abs_A, abs_B).value == 2:  # A > B
+        if  COM_NN_D(abs_A, abs_B).value == 2:  # A > B
             result_array = SUB_NN_N(abs_A, abs_B).array
             result_sign = A.sign  # Оставляем знак A
         else:  # A <= B
