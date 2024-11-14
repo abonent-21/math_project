@@ -13,6 +13,9 @@ class nat_0(object):
     def __repr__(self):
         return f"nat_0({self.array}, {self.n})"
 
+    def __str__(self):
+        return ''.join(str(i) for i in self.array)
+
     def copy(self):
         return nat_0(self.array.copy(), self.n)
 
@@ -29,6 +32,9 @@ class dig(object):
 
     def __repr__(self):
         return f"dig({self.value})"  # Исправлено на `self.value`
+
+    def __str__(self):
+        return f"{self.value}"
 
     def copy(self):
         return dig(self.value)
@@ -51,6 +57,9 @@ class ceil(object):
     def __repr__(self):
         return f"ceil({self.array}, {self.n}, {self.sign})"
 
+    def __str__(self):
+        return f"{['', '-'][self.sign]}{''.join([str(i) for i in self.array])}"
+
     def copy(self):
         return ceil(self.array.copy(), self.n, self.sign)
 
@@ -68,6 +77,9 @@ class rat(object):
 
     def __repr__(self):
         return f"rat({self.num}, {self.den})"
+
+    def __str__(self):
+        return f"{str(self.num)}/{str(self.den)}"
 
     def copy(self):
         return rat(self.num.copy(), self.den.copy())
@@ -88,6 +100,20 @@ class pol(object):
 
     def __repr__(self):
         return f"pol({self.coefficients}, {self.m})"
+
+    def __str__(self):
+        result = ''
+        pow = 0
+        for i in self.coefficients[:-1]:
+            if pow == 0:
+                result += str(i.num) + ' + '
+            elif i.den == nat_0([1], 1):
+                result += str(i.num) + f' x^{pow} + '
+            else:
+                result += str(i) + f' x^{pow} + '
+            pow += 1
+        result += str(self.coefficients[-1])
+        return result
 
     def copy(self):
         return pol(self.coefficients.copy(), self.m)
