@@ -1,6 +1,6 @@
 # Автор: Марков М.М. Группа - ПМИ-3381
 
-from Types import ceil, dig
+from Types import ceil
 from ABS_Z_Z import ABS_Z_Z
 from POZ_Z_D import POZ_Z_D
 from ADD_NN_N import ADD_NN_N
@@ -14,11 +14,7 @@ def SUB_ZZ_Z(A: ceil, B: ceil) -> ceil:
     # Вычитает целое число B из целого числа A (A - B).
 
     sign_A = POZ_Z_D(A)
-    if sign_A == dig(0):
-        return MUL_ZM_Z(B)
     sign_B = POZ_Z_D(B)
-    if sign_B == dig(0):
-        return A
 
     # Если одно из чисел равно нулю
     if sign_A.value == 0:
