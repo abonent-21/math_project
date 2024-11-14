@@ -15,9 +15,9 @@ def find_devisors(r: rat) -> list:
     devisors_moderator = [] # список делителей числителя
 
     numbers = [int(j) for j in str(moderator)] # числитель
-    devisors_moderator.append(rat(ceil(numbers, len(numbers), 0), nat_0([1], 1))) # числитель + как делитель
-    devisors_moderator.append(rat(ceil(numbers, len(numbers), 1), nat_0([1], 1))) # числитель - как дклитель
-    for i in range(2, int(abs(moderator)**0.5 + 1) + 1): # все делители числителя
+    devisors_moderator.append(rat(ceil(numbers, len(numbers), 0), nat_0([1], 1))) # знаменатель с + как делитель
+    devisors_moderator.append(rat(ceil(numbers, len(numbers), 1), nat_0([1], 1))) # знаменатель с - как делитель
+    for i in range(1, int(abs(moderator)**0.5 + 1) + 1): # все делители числителя
         if moderator % i == 0:
             numbers = [int(j) for j in str(i)]
             devisors_moderator.append(rat(ceil(numbers, len(numbers), 0), nat_0([1], 1)))
@@ -26,9 +26,9 @@ def find_devisors(r: rat) -> list:
     devisors_denominator = [] # список делителей знаменателя
 
     numbers = [int(j) for j in str(denominator)] # знаменатель
-    devisors_denominator.append(rat(ceil([1], 1, 0), nat_0(numbers, len(numbers)))) # знаменатель + как делитель
-    devisors_denominator.append(rat(ceil([1], 1, 1), nat_0(numbers, len(numbers)))) # знаменатель - как делитель 
-    for i in range(2, int(abs(denominator)**0.5 + 1) + 1): # все делители знаменателя
+    devisors_denominator.append(rat(ceil([1], 1, 0), nat_0(numbers, len(numbers)))) # числитель с + как делитель
+    devisors_denominator.append(rat(ceil([1], 1, 1), nat_0(numbers, len(numbers)))) # числитель с - как делитель
+    for i in range(1, int(abs(denominator)**0.5 + 1) + 1): # все делители знаменателя
         if denominator % i == 0:
             numbers = [int(j) for j in str(i)]
             devisors_denominator.append(rat(ceil([1], 1, 0), nat_0(numbers, len(numbers))))
@@ -39,7 +39,6 @@ def find_devisors(r: rat) -> list:
     for i in devisors_moderator:
         for j in devisors_denominator:
             rat_num = rat(ceil(i.num.array, i.num.n, i.num.sign), nat_0(j.den.array, j.den.n))
-            rat_num = DIV_QQ_Q(rat_num, rat(ceil([1], 1, 0), nat_0([1], 1)))
             if rat_num not in devisors:
                 devisors.append(rat_num)
     
@@ -64,40 +63,27 @@ def NMR_P_P(polym: pol) -> pol:
 
     polynom = pol(new_coefs, len(new_coefs) - 1)
     null_pol = pol([rat(ceil([0], 1, 0), nat_0([1], 1))], 0) # нулевой поленом
+    union_pol = pol([rat(ceil([1], 1, 0), nat_0([1], 1))], 0) # единичный полином
 
     polynoms = []
 
     free_coef = polynom.coefficients[0] # свободный коэфициент
     devisors = find_devisors(free_coef) # делители свободного коэфициента
     idx_div = 0 # индекс делителя в списке делителей
-    while idx_div != len(devisors):
+    while idx_div != len(devisors) and polynom != union_pol:
         devisor_polym = pol([
                             devisors[idx_div],  # потенцияальное решение уравнения
                             rat(ceil([1], 1, 0), nat_0([1], 1))   # 1 * x^1
                             ], 1)
         if MOD_PP_P(polynom, devisor_polym) == null_pol:
             polynom = DIV_PP_P(polynom, devisor_polym)
-            if polynom not in polynoms:
-                polynoms.append(polynom)
+            if devisor_polym not in polynoms:
+                polynoms.append(devisor_polym)
         else:
             idx_div += 1
-    new_polym = polynoms[0]
-    for i in range(1, len(polynoms)):
-        new_polym = MUL_PP_P(new_polym, polynoms[i]) # собираем все в единый полином
-    return new_polym
-
-
-
-p5 = pol([
-        rat(ceil([3, 6], 2, 0), nat_0([1], 1)),  # 36 * x^0
-        rat(ceil([2, 4], 2, 0), nat_0([1], 1)),  # 24 * x^1
-        rat(ceil([9, 5], 2, 0), nat_0([1], 1)),  # 95  * x^2
-        rat(ceil([6, 9], 2, 1), nat_0([1], 1)),  # -69 * x^3
-        rat(ceil([6, 3], 2, 1), nat_0([1], 1)),  # -63 * x^4
-        rat(ceil([4, 9], 2, 0), nat_0([1], 1))   # 49 * x^5
-    ], 5) # 49x^5 - 63x^4 - 69*x^3 + 95*x^2 + 24*x - 36 = (7x + 6)^2 * (x - 1)^3
-
-a = pol([rat(ceil([6], 1, 0), nat_0([1], 1)), rat(ceil([7], 1, 0), nat_0([1], 1))], 1)
-# 7x + 6
-
-print(MOD_PP_P(p5, a)) # pol([rat(ceil([7, 2], 2, 0), nat_0([1], 1))], 0)
+    if polynoms:
+        new_polym = polynoms[0]
+        for i in range(1, len(polynoms)):
+            new_polym = MUL_PP_P(new_polym, polynoms[i]) # собираем все в единый полином
+        return new_polym
+    return None
