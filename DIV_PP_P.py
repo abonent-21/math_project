@@ -39,16 +39,16 @@ def DIV_PP_P(a: pol, b: pol) -> pol:
         st1 = DEG_P_N(arr1)  # Степень первого многочлена
         st2 = DEG_P_N(arr2)  # Степень второго многочлена
         deg_diff = SUB_NN_N(st1, st2)  # Вычисляем разницу степеней
-        deg_diff = int(''.join(map(str, deg_diff.array)))
+        deg_diff_int = int(''.join(map(str, deg_diff.array)))
         
         # Делим коэффициенты
         coef = DIV_QQ_Q(arr1.coefficients[-1], arr2.coefficients[-1])
 
         # Устанавливаем соответствующий коэффициент в частном
-        result.coefficients[deg_diff] = coef
+        result.coefficients[deg_diff_int] = coef
 
         # Умножаем второй полином на x^(разница степеней) и на коэффициент частного
-        tmp_pol = MUL_Pxk_P(arr2, nat_0([deg_diff], 1))  # Умножаем на x^(разница степеней)
+        tmp_pol = MUL_Pxk_P(arr2, deg_diff)  # Умножаем на x^(разница степеней)
         arrSUB = MUL_PQ_P(tmp_pol, coef)  # Умножаем на коэффициент частного
 
         # Обновляем первый полином, вычитая из него результат умножения
