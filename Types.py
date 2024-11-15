@@ -4,7 +4,7 @@ class nat_0(object):
         assert all(0 <= i <= 9 for i in array), "Все элементы должны быть цифрами от 0 до 9"
         self.array = array
         self.n = n
-        
+
     def __eq__(self, other):
         if isinstance(other, nat_0):
             return self.array == other.array and self.n == other.n
@@ -14,7 +14,7 @@ class nat_0(object):
         return f"nat_0({self.array}, {self.n})"
 
     def __str__(self):
-        return ''.join(str(i) for i in self.array)
+        return "".join(str(i) for i in self.array)
 
     def copy(self):
         return nat_0(self.array.copy(), self.n)
@@ -102,17 +102,36 @@ class pol(object):
         return f"pol({self.coefficients}, {self.m})"
 
     def __str__(self):
-        result = ''
+        result = ""
         pow = 0
         for i in self.coefficients[:-1]:
-            if pow == 0:
-                result += str(i.num) + ' + '
+            if i.num == ceil([0], 1, 0):
+                pass
+            elif pow == 0:
+                if i.den == nat_0([1], 1):
+                    result += str(i.num) + " + "
+                else:
+                    result += str(i) + " + "
+            elif pow == 1:
+                if i.den == nat_0([1], 1):
+                    result += str(i.num) + " x + "
+                else:
+                    result += str(i) + " x + "
             elif i.den == nat_0([1], 1):
-                result += str(i.num) + f' x^{pow} + '
+                result += str(i.num) + f" x^{pow} + "
             else:
-                result += str(i) + f' x^{pow} + '
+                result += str(i) + f" x^{pow} + "
             pow += 1
-        result += str(self.coefficients[-1]) + f' x^{pow}'
+        if self.coefficients[-1].den == nat_0([1], 1):
+            if pow == 0:
+                result += str(self.coefficients[-1].num)
+                return result
+            result += str(self.coefficients[-1].num) + f" x^{pow}"
+            return result
+        if pow == 0:
+            result += str(self.coefficients[-1])
+            return result
+        result += str(self.coefficients[-1]) + f" x^{pow}"
         return result
 
     def copy(self):
