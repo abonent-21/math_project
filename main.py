@@ -259,7 +259,7 @@ class FunctionFrame(ttk.Frame):
 
         ttk.Label(frame, text="Введите степень многочлена:", font=("Arial", 12)).pack(pady=10)
         self.degree_var = tk.IntVar(value=0)
-        self.degree_spinbox = ttk.Spinbox(frame, from_=0, to=100, textvariable=self.degree_var, width=5,
+        self.degree_spinbox = ttk.Spinbox(frame, from_=0, to=1000, textvariable=self.degree_var, width=5,
                                           command=self.create_poly_coeff_fields)
         self.degree_spinbox.pack()
 
