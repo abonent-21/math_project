@@ -9,8 +9,8 @@ def find_devisors(r: rat) -> list:
     """
     Функция по нахождению делителей свободного коэфициента
     """
-    moderator: ceil = int(''.join([str(i) for i in r.num.array])) # числитель
-    denominator: nat_0 = int(''.join([str(i) for i in r.den.array])) # знаменатель
+    moderator = int(''.join([str(i) for i in r.num.array])) # числитель
+    denominator = int(''.join([str(i) for i in r.den.array])) # знаменатель
 
     devisors_moderator = [] # список делителей числителя
 
