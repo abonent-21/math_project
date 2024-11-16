@@ -1,3 +1,5 @@
+# Автор Козлов Георгий группа 3381
+
 from Types import pol, rat, ceil, nat_0
 from MUL_QQ_Q import MUL_QQ_Q
 
